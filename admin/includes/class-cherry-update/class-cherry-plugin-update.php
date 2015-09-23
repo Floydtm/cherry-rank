@@ -30,13 +30,14 @@ if ( ! class_exists( 'Cherry_Plugin_Update' ) ) {
 		 * @return void
 		 */
 		public function init( $attr = array() ) {
-			if ( @constant ( 'CHERRY_UPDATE' ) !== false ) {
+			if ( @constant( 'CHERRY_UPDATE' ) !== false ) {
 				$this->base_init( $attr );
 
-				/*
-				Need for test update
-				set_site_transient('update_plugins', null);
-				*/
+				/**
+				 * Need for test update
+				 *
+				 * set_site_transient('update_plugins', null);
+				 */
 
 				add_action( 'pre_set_site_transient_update_plugins', array( $this, 'update' ) );
 				add_filter( 'upgrader_source_selection', array( $this, 'rename_github_folder' ), 11, 3 );
@@ -47,7 +48,7 @@ if ( ! class_exists( 'Cherry_Plugin_Update' ) ) {
 		/**
 		 * Process update
 		 *
-		 * @param object $data update data
+		 * @param object $data update data.
 		 * @return object
 		 */
 		public function update( $data ) {

@@ -17,11 +17,13 @@ if ( ! defined( 'WPINC' ) ) {
 
 if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 
-	/*
-	define('CHERRY_UPDATE', false);
-	define('CHERRY_ALPHA_UPDATE', true);
-	define('CHERRY_BETA_UPDATE', true);
-	*/
+	/**
+	 * Test definitions to allow alpha and beta updates
+	 *
+	 * define('CHERRY_UPDATE', false);
+	 * define('CHERRY_ALPHA_UPDATE', true);
+	 * define('CHERRY_BETA_UPDATE', true);
+	 */
 
 	/**
 	 * Base updater class
@@ -111,12 +113,12 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 		/**
 		 * Reanme github foler on update
 		 *
-		 * @param  string $upgrate_dir theme folder name
-		 * @param  string $remote_dir remote folder name
-		 * @param  object $skin_upgrader upgrader object instance
+		 * @param  string $upgrate_dir theme folder name.
+		 * @param  string $remote_dir remote folder name.
+		 * @param  object $skin_upgrader upgrader object instance.
 		 * @return string
 		 */
-		public function rename_github_folder( $upgrate_dir, $remote_dir, $skin_upgrader ){
+		public function rename_github_folder( $upgrate_dir, $remote_dir, $skin_upgrader ) {
 
 			$slug = $this->api['slug'];
 			$is_theme = isset( $skin_upgrader->skin->theme ) || isset( $skin_upgrader->skin->theme_info ) ? true : false ;

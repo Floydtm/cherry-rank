@@ -10,4 +10,4 @@ Plug-in which allows you to create and manage "ratings","likes", "dislikes" and 
 
 #### v1.0.1 ####
 
-* UPD: Enqueue JS files only when needed
+* UPD: Enqueue JS files only when needed  

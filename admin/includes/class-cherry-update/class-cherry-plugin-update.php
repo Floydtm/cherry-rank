@@ -26,15 +26,17 @@ if ( ! class_exists( 'Cherry_Plugin_Update' ) ) {
 		/**
 		 * Init class parameters
 		 *
-		 * @param  array  $attr input attributes array
+		 * @param array  $attr input attributes array.
 		 * @return void
 		 */
-		public function init( $attr = array() ){
-			if( @constant ( 'CHERRY_UPDATE' ) !== false ){
+		public function init( $attr = array() ) {
+			if ( @constant ( 'CHERRY_UPDATE' ) !== false ) {
 				$this->base_init( $attr );
 
-				/*Need for test update
-				set_site_transient('update_plugins', null);*/
+				/*
+				Need for test update
+				set_site_transient('update_plugins', null);
+				*/
 
 				add_action( 'pre_set_site_transient_update_plugins', array( $this, 'update' ) );
 				add_filter( 'upgrader_source_selection', array( $this, 'rename_github_folder' ), 11, 3 );
@@ -45,13 +47,13 @@ if ( ! class_exists( 'Cherry_Plugin_Update' ) ) {
 		/**
 		 * Process update
 		 *
-		 * @param  object $data
+		 * @param object $data update data
 		 * @return object
 		 */
 		public function update( $data ) {
 			$new_update = $this->check_update();
 
-			if( $new_update['version'] ){
+			if ( $new_update['version'] ) {
 				$this->api['plugin'] = $this->api['slug'] . '/' . $this->api['slug'] . '.php';
 
 				$update = new stdClass();
@@ -74,18 +76,18 @@ if ( ! class_exists( 'Cherry_Plugin_Update' ) ) {
 		 *
 		 * @return void
 		 */
-		public function change_details_url(){
+		public function change_details_url() {
 			global $change_details_plugin_url_script, $pagenow;
 
 			$plugins = get_plugin_updates();
 
-			if ( ! $change_details_plugin_url_script && in_array( $pagenow, array( 'update-core.php', 'plugins.php' ) ) && ! empty( $plugins ) ){
+			if ( ! $change_details_plugin_url_script && in_array( $pagenow, array( 'update-core.php', 'plugins.php' ) ) && ! empty( $plugins ) ) {
 
 				$plugins_string = '';
 
 				foreach ( $plugins as $plugin_key => $plugin_value ) {
 					$plugin_key = strtolower( $plugin_key );
-					if ( strpos( $plugin_key, 'cherry' ) !== false ){
+					if ( strpos( $plugin_key, 'cherry' ) !== false ) {
 						$plugins_string .= '"' . $plugin_value ->update ->slug . '" : "' . $plugin_value ->update ->url .'", ';
 					}
 				}

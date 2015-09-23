@@ -81,10 +81,8 @@ if ( ! class_exists( 'Cherry_Rank_Init' ) ) {
 			if ( null == self::$instance ) {
 				self::$instance = new self;
 			}
-
 			return self::$instance;
 		}
-
 	}
 
 	Cherry_Rank_Init::get_instance();

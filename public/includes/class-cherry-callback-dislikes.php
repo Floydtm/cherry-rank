@@ -86,8 +86,8 @@ if ( ! class_exists( 'Cherry_Callback_Dislikes' ) ) {
 		 * Register callback for dislikes macros to process it in shortcodes
 		 *
 		 * @since  1.0.2
-		 * @param  array $data existing callbacks
-		 * @param  array $atts shortcode attributes
+		 * @param  array $data existing callbacks.
+		 * @param  array $atts shortcode attributes.
 		 * @return array
 		 */
 		public function register_dislikes_macros( $data, $atts ) {
@@ -284,10 +284,8 @@ if ( ! class_exists( 'Cherry_Callback_Dislikes' ) ) {
 			if ( null == self::$instance ) {
 				self::$instance = new self;
 			}
-
 			return self::$instance;
 		}
-
 	}
 
 	Cherry_Callback_Dislikes::get_instance();

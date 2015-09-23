@@ -100,7 +100,7 @@ if ( ! class_exists( 'Cherry_Rank_Options' ) ) {
 		 * @uses   cherry_get_option  use cherry_get_option from Cherry framework if exist
 		 *
 		 * @param  string $name option name to get.
-		 * @param  mixed $default default option value.
+		 * @param  mixed  $default default option value.
 		 * @return mixed
 		 */
 		public static function get_option( $name, $default = false ) {
@@ -126,10 +126,8 @@ if ( ! class_exists( 'Cherry_Rank_Options' ) ) {
 			if ( null == self::$instance ) {
 				self::$instance = new self;
 			}
-
 			return self::$instance;
 		}
-
 	}
 
 	Cherry_Rank_Options::get_instance();

@@ -229,10 +229,8 @@ if ( ! class_exists( 'Cherry_Callback_Views' ) ) {
 			if ( null == self::$instance ) {
 				self::$instance = new self;
 			}
-
 			return self::$instance;
 		}
-
 	}
 
 	Cherry_Callback_Views::get_instance();

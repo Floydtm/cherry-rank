@@ -300,7 +300,7 @@ if ( ! class_exists( 'Cherry_Callback_Rating' ) ) {
 			$new_rate = array(
 				'rate'  => round( $new_count , 2 ),
 				'total' => 5,
-				'votes' => $votes + 1
+				'votes' => $votes + 1,
 			);
 
 			update_post_meta( $post_id, $this->meta_key, $new_rate );
@@ -328,7 +328,6 @@ if ( ! class_exists( 'Cherry_Callback_Rating' ) ) {
 
 			return self::$instance;
 		}
-
 	}
 
 	Cherry_Callback_Rating::get_instance();

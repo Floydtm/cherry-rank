@@ -200,7 +200,6 @@ if ( ! class_exists( 'Cherry_Rank' ) ) {
 			if ( null == self::$instance ) {
 				self::$instance = new self;
 			}
-
 			return self::$instance;
 		}
 	}

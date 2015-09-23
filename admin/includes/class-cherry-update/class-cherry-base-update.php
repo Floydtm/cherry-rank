@@ -17,9 +17,11 @@ if ( ! defined( 'WPINC' ) ) {
 
 if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 
-	/* define('CHERRY_UPDATE', false);
+	/*
+	define('CHERRY_UPDATE', false);
 	define('CHERRY_ALPHA_UPDATE', true);
-	define('CHERRY_BETA_UPDATE', true); */
+	define('CHERRY_BETA_UPDATE', true);
+	*/
 
 	/**
 	 * Base updater class
@@ -42,17 +44,17 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 		/**
 		 * Init class parameters
 		 *
-		 * @param  array  $attr input attributes array
+		 * @param  array $attr input attributes array.
 		 * @return void
 		 */
-		protected function base_init( $attr = array() ){
+		protected function base_init( $attr = array() ) {
 			$this->api = array_merge( $this->api, $attr );
 		}
 
 		/**
 		 * Check if update are avaliable
 		 *
-		 * @return void
+		 * @return array
 		 */
 		protected function check_update() {
 			$args = array(
@@ -64,21 +66,21 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 				'get_beta' => false,
 			);
 
-			if ( defined ( 'CHERRY_ALPHA_UPDATE' ) ){
+			if ( defined ( 'CHERRY_ALPHA_UPDATE' ) ) {
 				$args['get_alpha'] = true;
 			}
 
-			if ( defined ( 'CHERRY_BETA_UPDATE' ) ){
+			if ( defined ( 'CHERRY_BETA_UPDATE' ) ) {
 				$args['get_beta'] = true;
 			}
 
-			if ( defined ( 'CHERRY_UP_QUERY_LIMIT' ) ){
+			if ( defined ( 'CHERRY_UP_QUERY_LIMIT' ) ) {
 				$args['up_query_limit'] = true;
 			}
 
 			$response = $this -> remote_query( $args );
 
-			if ( $response && $response !=='not_update' ){
+			if ( $response && 'not_update' !== $response ){
 				$this->api['details_url'] = $response->details_url;
 				return array( 'version' => $response->new_version, 'package' => $response->package );
 			}
@@ -89,7 +91,7 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 		/**
 		 * Remote request to updater API
 		 *
-		 * @param  array $args request paprams
+		 * @param  array $args request paprams.
 		 * @return array|bool false
 		 */
 		protected function remote_query( $args ) {
@@ -101,7 +103,7 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 				return false;
 			}
 
-			$response = json_decode( $response[ 'body' ] );
+			$response = json_decode( $response['body'] );
 
 			return $response;
 		}
@@ -109,9 +111,9 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 		/**
 		 * Reanme github foler on update
 		 *
-		 * @param  string $upgrate_dir
-		 * @param  string $remote_dir
-		 * @param  object $skin_upgrader
+		 * @param  string $upgrate_dir theme folder name
+		 * @param  string $remote_dir remote folder name
+		 * @param  object $skin_upgrader upgrader object instance
 		 * @return string
 		 */
 		public function rename_github_folder( $upgrate_dir, $remote_dir, $skin_upgrader ){
@@ -120,14 +122,14 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 			$is_theme = isset( $skin_upgrader->skin->theme ) || isset( $skin_upgrader->skin->theme_info ) ? true : false ;
 			$is_plugin = isset( $skin_upgrader->skin->plugin_info ) ? true : false ;
 			$domain_plugin = $is_plugin ? $skin_upgrader->skin->plugin_info['TextDomain'] : '' ;
-			$title_plugin = $is_plugin ? str_replace(' ', '-', strtolower( $skin_upgrader->skin->plugin_info['Title'] ) ) : '' ;
-			$name_plugin = $is_plugin ? str_replace(' ', '-', strtolower( $skin_upgrader->skin->plugin_info['Name'] ) ) : '' ;
+			$title_plugin = $is_plugin ? str_replace( ' ', '-', strtolower( $skin_upgrader->skin->plugin_info['Title'] ) ) : '' ;
+			$name_plugin = $is_plugin ? str_replace( ' ', '-', strtolower( $skin_upgrader->skin->plugin_info['Name'] ) ) : '' ;
 
 			if ( $is_theme && strpos( $upgrate_dir, $slug ) !== false
 				|| $is_plugin && $domain_plugin === $slug
 				|| $is_plugin && $title_plugin === $slug
 				|| $is_plugin && $name_plugin === $slug
-			){
+			) {
 				$upgrate_dir_path = pathinfo( $upgrate_dir );
 				$new_upgrate_dir = trailingslashit( $upgrate_dir_path['dirname'] ) . trailingslashit( $slug );
 

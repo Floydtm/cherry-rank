@@ -86,7 +86,7 @@ if ( ! class_exists( 'Cherry_Callback_Likes' ) ) {
 		 * Register callback for likes macros to process it in shortcodes
 		 *
 		 * @since  1.0.2
-		 * @param  array $data existing callbacks
+		 * @param  array $data existing callbacks.
 		 * @param  array $atts shortcode attributes.
 		 * @return array
 		 */
@@ -248,7 +248,7 @@ if ( ! class_exists( 'Cherry_Callback_Likes' ) ) {
 		 * Check if user already disliked this post and remove dislike
 		 *
 		 * @since  1.0.0
-		 * @param  int  $post_id  post ID to check.
+		 * @param  int $post_id post ID to check.
 		 */
 		public function maybe_remove_dislike( $post_id ) {
 
@@ -283,10 +283,8 @@ if ( ! class_exists( 'Cherry_Callback_Likes' ) ) {
 			if ( null == self::$instance ) {
 				self::$instance = new self;
 			}
-
 			return self::$instance;
 		}
-
 	}
 
 	Cherry_Callback_Likes::get_instance();

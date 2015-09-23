@@ -20,9 +20,9 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 	/**
 	 * Test definitions to allow alpha and beta updates
 	 *
-	 * define('CHERRY_UPDATE', false);
-	 * define('CHERRY_ALPHA_UPDATE', true);
-	 * define('CHERRY_BETA_UPDATE', true);
+	 * Disable updates - define('CHERRY_UPDATE', false);
+	 * Enable auto updates - define('CHERRY_ALPHA_UPDATE', true);
+	 * Enable beta updates - define('CHERRY_BETA_UPDATE', true);
 	 */
 
 	/**
@@ -68,21 +68,21 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 				'get_beta' => false,
 			);
 
-			if ( defined ( 'CHERRY_ALPHA_UPDATE' ) ) {
+			if ( defined( 'CHERRY_ALPHA_UPDATE' ) ) {
 				$args['get_alpha'] = true;
 			}
 
-			if ( defined ( 'CHERRY_BETA_UPDATE' ) ) {
+			if ( defined( 'CHERRY_BETA_UPDATE' ) ) {
 				$args['get_beta'] = true;
 			}
 
-			if ( defined ( 'CHERRY_UP_QUERY_LIMIT' ) ) {
+			if ( defined( 'CHERRY_UP_QUERY_LIMIT' ) ) {
 				$args['up_query_limit'] = true;
 			}
 
 			$response = $this -> remote_query( $args );
 
-			if ( $response && 'not_update' !== $response ){
+			if ( $response && 'not_update' !== $response ) {
 				$this->api['details_url'] = $response->details_url;
 				return array( 'version' => $response->new_version, 'package' => $response->package );
 			}
@@ -93,7 +93,7 @@ if ( ! class_exists( 'Cherry_Base_Update' ) ) {
 		/**
 		 * Remote request to updater API
 		 *
-		 * @param  array $args request paprams.
+		 * @param array $args request paprams.
 		 * @return array|bool false
 		 */
 		protected function remote_query( $args ) {
